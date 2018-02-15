@@ -1,26 +1,47 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-	<title>Success</title>
+
+  <title>Success</title>
+
 </head>
+
 <body>
 
-	{% with messages = get_flashed_messages()  %}
-		{% if messages %}
-			{% for message %}
-			<p>{{messages}}</p>
-			{% endfor %}
-		{% endif %}
-		{% endwith %}
-	 <table>
-   		<th>Email Address:</th> 
+	{% with messages = get_flashed_messages() %}
 
-    	{% for email in all_emails %}
-   			<tr>
-    			<td>{{ email['email'] }}</td>
-    			<td>{{ email ['created_at'] }}</td>
-    			<!--<td><a href="/remove_email/{{ friend['id'] }}">Remove Email</a></td>-->
-   			</tr>
+        {% if messages %}
+
+            {% for message in messages %}
+
+            <p>{{message}}</p>
+
+            {% endfor %}
+
+        {% endif %}
+
+        {% endwith %}
+
+  <table>
+
+	<th>Email Addresses Entered</th>
+
+	
+
+	{% for email in all_emails %}
+
+		<tr>
+
+			<td>{{ email['email_address'] }}</td>
+
+			<td>{{ email['created_at'] }}</td>
+
+		</tr>
+
+	{% endfor %}
+
   </table>
+
 </body>
+
 </html>

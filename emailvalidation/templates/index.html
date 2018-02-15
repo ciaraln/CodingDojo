@@ -1,22 +1,37 @@
 <html>
+
 <head>
+
   <title>Email Validation</title>
+
 </head>
-<style>
-  table td, th(padding: 10px) 
-</style>
+
 <body>
-   {% with messages = get_flashed_messages()  %}
-      {% if messages %}
-        {% for message in messages %}
-         <p>{{message}}</p>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-  <h1>Email Validation</h1>
-  <form action='/email' method='POST'>
-   <label for="email">Email Address:<input type="text" name="email" id="email"></label>
+
+  {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+            <p>{{message}}</p>
+
+            {% endfor %}
+
+        {% endif %}
+
+        {% endwith %}
+
+  <h2>Add a Friend</h2>
+
+  <form action='/process' method='POST'>
+
+    <label for="email">Email Address:<input type="text" name="email" id="email"></label>
+
     <input type="submit" value="Add">
+
   </form>
+
 </body>
+
 </html>
