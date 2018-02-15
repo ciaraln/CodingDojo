@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Success</title>
+</head>
+<body>
+
+	{% with messages = get_flashed_messages()  %}
+		{% if messages %}
+			{% for message %}
+			<p>{{messages}}</p>
+			{% endfor %}
+		{% endif %}
+		{% endwith %}
+	 <table>
+   		<th>Email Address:</th> 
+
+    	{% for email in all_emails %}
+   			<tr>
+    			<td>{{ email['email'] }}</td>
+    			<td>{{ email ['created_at'] }}</td>
+    			<!--<td><a href="/remove_email/{{ friend['id'] }}">Remove Email</a></td>-->
+   			</tr>
+  </table>
+</body>
+</html>
