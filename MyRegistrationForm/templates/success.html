@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Login Confirmation</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>New User Registration</h1>
+        <h1>Thank You for Registering with Ci's World!!</h1>
+        Email:<h3>{{session['email']}}</h3>
+        First Name:<h3>{{session['first_name']}}</h3 >
+        Last Name:<h3>{{session['last_name']}}</h3>
+        Password:<h3>{{session['password']}}</h3>
+        Confirm Password:<h3>  {{session['passwordcheck']}}</h3>
+        <br>
+        <p>Enjoy the site and don't hesitate to contact us with your feedback!</p>
+        <p>
+    </div>
+</body>
+</html>
