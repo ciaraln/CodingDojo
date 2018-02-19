@@ -1,0 +1,9 @@
+#container {
+	background-image: url('greywood.jpg');
+	border: solid 5px black;
+	text-align: center;
+	width:600px;
+	margin-left: 292px;
+	padding-bottom: 25px; 
+	color: white;
+}
