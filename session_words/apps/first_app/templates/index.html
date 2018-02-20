@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static '/first_app/style.css' %}">
+    <title>Session Words</title>
+    <style type="text/css">
+    	* {
+	box-sizing: border-box;
+}
+body {
+	margin:0;
+}
+
+.column {
+	float: left;
+    width: 50%;
+    padding: 10px;
+    height: 100%;
+}
+
+.container {
+	background-color: beige;
+	content: "";
+    display: table;
+    clear: both;
+    width: 100%;
+    height: 100%;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+    	<div class ="column">
+	        <form action="/session_words" method="post">
+	            {% csrf_token %}
+	            <h1>Add a new word</h1>
+	        	<input type="text" name="word">
+	        	<br>
+	        	<h3>Choose color</h3>
+	        	<input type="radio" name="color" value="red">Red
+	        	<input type="radio" name="color" value="green">Green
+	        	<input type="radio" name="color" value="blue">Blue
+	        	<br><br>
+	        	<input type="checkbox" name="checkbox">show in Big fonts!
+	        	<br><br>
+	        	<input type="submit" value = "Add to Session">
+	        </form>
+    	</div>
+        <br>
+        <div class="column">
+        	<form action="/clear">
+	        	{% csrf_token %}
+	        	<input type="submit" name="Clear Session">
+	      	</form>
+	        <br>
+	        <br>
+	        {{request.session.list}}
+	        <ul>Display Info
+	        	{% for word in request.session.list %}
+	   			<p style='font-size:{{word.font}}px;color:{{word.color}};'>{{word.word}}</p><p> added on {{word.time}}</p>
+	   			{% endfor %}
+	   		</ul>
+		</div>
+    </div>
+</body>
+</html>
