@@ -1,0 +1,62 @@
+(djangoEnv) C:\Users\ciara\Documents\CodingDojo\Python\python_stack\Django\bookauthors>python manage.py shell
+Python 2.7.14 (v2.7.14:84471935ed, Sep 16 2017, 20:25:58) [MSC v.1500 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from book_authors.models import *
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: No module named book_authors.models
+>>> from apps.book_authors.models import *
+>>> Book.objects.get(id=5).authors().all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\ciara\Documents\CodingDojo\Python\python_stack\djangoEnv\lib\site-packages\django\db\models\fields\related_descriptors.py", line 842, in __call__
+    manager = getattr(self.model, kwargs.pop('manager'))
+KeyError: u'manager'
+>>> Book.objects.get(id=5).authors.all()
+<QuerySet [<Author: Author object>, <Author: Author object>, <Author: Author object>]>
+>>> Book.objects.get(id=5).authors.all().values()
+<QuerySet [{'first_name': u'Speros', 'last_name': u'Jo', 'notes': u'Life is good.', 'updated_at': datetime.datetime(2018, 2, 21, 4, 11, 58, 333000, tzinfo=<UTC>), u'id': 2, 'email': u'mikejo@jo.org', 'created_at': datetime.datetime(2018, 2, 21, 4, 11, 58, 333000, tzinfo=<UTC>)}, {'first_name': u'John', 'last_name': u'Smith', 'notes': u'Life is good.', 'updated_at': datetime.datetime(2018, 2, 21, 4, 12, 23, 231000, tzinfo=<UTC>), u'id': 3, 'email': u'john@smith.org', 'created_at': datetime.datetime(2018, 2, 21, 4, 12, 23, 230000, tzinfo=<UTC>)}, {'first_name': u'Jadee', 'last_name': u'Fearn', 'notes': u'Life is good.', 'updated_at': datetime.datetime(2018, 2, 21, 4, 12, 48, 438000, tzinfo=<UTC>), u'id': 4, 'email': u'jadee@smith.org', 'created_at': datetime.datetime(2018, 2, 21, 4, 12, 48, 438000, tzinfo=<UTC>)}]>
+>>> this_book=Book.objects.get(id=5)
+>>> this_author=Author.objects.get(id=1)
+>>> this.author.books.delete(this_book)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'this' is not defined
+>>> this_author.books.delete(this_book)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ManyRelatedManager' object has no attribute 'delete'
+>>> this_author.books.delete(this_book)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'ManyRelatedManager' object has no attribute 'delete'
+>>> Book.objects.get(id=5).authors.first()
+<Author: Author object>
+>>> d1=Book.objects.get(id=5).authors.first()
+>>> d1.delete()
+(4, {u'book_authors.Author': 1, u'book_authors.Author_books': 3})
+>>> this_book=Book.objects.get(id=4)
+>>> this_author=Author.objects.get(id=5)
+>>> this_author.books.add(this_book)
+>>> Author.objects.get(id=3).books.all()
+<QuerySet [<Book: Book object>, <Book: Book object>, <Book: Book object>, <Book: Book object>]>
+>>> Author.objects.get(id=3).books.all().values()
+<QuerySet [{'updated_at': datetime.datetime(2018, 2, 21, 3, 57, 17, 784000, tzinfo=<UTC>), 'created_at': datetime.datetime(2018, 2, 21, 3, 57, 17, 784000, tzinfo=<UTC>), 'desc': u'C Language', u'id': 3, 'name': u'C sharp'}, {'updated_at': datetime.datetime(2018, 2, 21, 3, 57, 28, 450000, tzinfo=<UTC>), 'created_at': datetime.datetime(2018, 2, 21, 3, 57, 28, 450000, tzinfo=<UTC>), 'desc': u'C Language', u'id': 4, 'name': u'Java'}, {'updated_at': datetime.datetime(2018, 2, 21, 3, 57, 42, 337000, tzinfo=<UTC>), 'created_at': datetime.datetime(2018, 2, 21, 3, 57, 42, 337000, tzinfo=<UTC>), 'desc': u'JS Language', u'id': 5, 'name': u'Python'}, {'updated_at': datetime.datetime(2018, 2, 21, 3, 58, 2, 693000, tzinfo=<UTC>), 'created_at': datetime.datetime(2018, 2, 21, 3, 58, 2, 693000, tzinfo=<UTC>), 'desc': u'Ruby Language', u'id': 6, 'name': u'Ruby'}]>
+>>> Author.objects.get(id=2).books.all().values()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\ciara\Documents\CodingDojo\Python\python_stack\djangoEnv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\ciara\Documents\CodingDojo\Python\python_stack\djangoEnv\lib\site-packages\django\db\models\query.py", line 380, in get
+    self.model._meta.object_name
+DoesNotExist: Author matching query does not exist.
+>>> Author.objects.get(id=2).books.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\ciara\Documents\CodingDojo\Python\python_stack\djangoEnv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\ciara\Documents\CodingDojo\Python\python_stack\djangoEnv\lib\site-packages\django\db\models\query.py", line 380, in get
+    self.model._meta.object_name
+DoesNotExist: Author matching query does not exist.
+>>> Author.objects.get(id=2).books.all()
