@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login_App</title>
+</head>
+<body style="box-sizing: border-box;">
+	<div >
+		
+		<form action="/register" method="post" >
+			{% csrf_token %}
+			<h1>Registration</h1>
+			<input type="hidden" name="formtype" value="registrator">
+			Email  Address:<input type="text" name="email_address"><br>
+			First Name:<input type="text" name="first_name"><br>
+			Last Name:<input type="text" name="last_name"><br></br>
+			Password:<input type="password" name="password"><br>
+			Confirm Password:<input type="password" name="passwordcheck"><br>
+					{% if messages %}
+			<ul class="messages">
+			    {% for message in messages %}
+			    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+			        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+			        {{ message }}
+			    </li>
+			    {% endfor %}
+			</ul>
+			{% endif %}
+			<input type="submit" value="Register">
+		</form>
+		<form action="/register" method="post">
+			{% csrf_token %}
+			<h1>Login</h1>
+			<input type="hidden" name="formtype" value="login">
+			Email  Address:<input type="text" name="email_address"><br>
+			Password:<input type="password" name="password"><br>
+			<input type="submit" value="Login">
+		</form>
+	</div>
+</body>
+</html>
